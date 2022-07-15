@@ -1,1 +1,1 @@
-worker: python runner.py
+worker: python twitter_dynamic_header.py
