@@ -8,6 +8,9 @@ from dotenv import load_dotenv
 # Loading Environment variables
 load_dotenv()
 
+# Constants
+USERNAME = "vasteaditya"
+
 # Scraping Limit (in Seconds)
 CURR_SCRAPE_LIMIT = 60
 HIGH_SCRAPE_LIMIT = 120
@@ -33,6 +36,7 @@ try:
 except:
     print("[ TWITTER ] : Authentication Unsuccessfull due to Invalid Credential Details ! ")
 
+
 #------------------------ F U N C T I O N S ----------------------------
 
 # Make a copy of the default profile picture
@@ -46,8 +50,11 @@ def makeCopyOfFile(original,target):
 # Delete Extracted Profile Pictures
 def deleteProfilePictures():
     for i in range(5):
-        os.remove(f"{i+1}.png")
-
+        try:
+            os.remove(f"./images/{i+1}.png")
+        except:
+            pass
+    print("[ TWITTER ] : Deleted the Provisional Profile Pictures ")
 
 # Extracting Profile Pictures from Twitter 
 def extractProfilePictures(username=None):
@@ -116,21 +123,37 @@ def createHeaderImage():
             img = Image.open(f"./images/{i}.png").resize((140,140))
             profile_images.append(img)
         except:
-            print(f"[ PILLOW  ] : Error While Loading the Profile Pic {i}")
+            print(f"[ PILLOW  ] : No file found for the Profile Pic {i}")
 
     print("[ PILLOW  ] : Resizing of Profile Pictures Done Properly.")
 
-    header.paste(profile_images[0],(313,172),createMask(profile_images[0]))
-    header.paste(profile_images[1],(499,172),createMask(profile_images[1]))
-    header.paste(profile_images[2],(688,172),createMask(profile_images[2]))
-    header.paste(profile_images[3],(874,172),createMask(profile_images[3]))
-    header.paste(profile_images[4],(1049,172),createMask(profile_images[4]))
+    try:
+        header.paste(profile_images[0],(313,172),createMask(profile_images[0]))
+        header.paste(profile_images[1],(499,172),createMask(profile_images[1]))
+        header.paste(profile_images[2],(688,172),createMask(profile_images[2]))
+        header.paste(profile_images[3],(874,172),createMask(profile_images[3]))
+        header.paste(profile_images[4],(1049,172),createMask(profile_images[4]))
+    except:
+        print("[ PILLOW  ] : Header Image Created with limited Profile pics")
     header.save('./images/header.png', quality=100)
     print("[ PILLOW  ] : Your Header Saved as 'header.png' in 'images' Directory Successfully !!")
 
+
+# Updating the twitter header
+def updateTwitterHeader():
+    try:
+        filename = "./images/header.png"
+        api.update_profile_banner(filename)
+        print("[ TWITTER ] : Updated Twitter Header Successfully")
+    except:
+        print("[ TWITTER ] : Problem While Updating Header Image")
+
+
 while True:
-    if extractProfilePictures():
+    deleteProfilePictures()
+    if extractProfilePictures(USERNAME):
         createHeaderImage()
+        updateTwitterHeader()
         SCRAPE_LIMIT = CURR_SCRAPE_LIMIT
     print(f"[  SLEEP  ] : Time Sleep of {SCRAPE_LIMIT} Seconds")
     time.sleep(SCRAPE_LIMIT)
