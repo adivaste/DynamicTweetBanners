@@ -2,7 +2,11 @@ import os
 import time
 import requests
 import tweepy
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw
+from dotenv import load_dotenv
+
+# Loading Environment variables
+load_dotenv()
 
 # Scraping Limit (in Seconds)
 CURR_SCRAPE_LIMIT = 60
@@ -10,10 +14,10 @@ HIGH_SCRAPE_LIMIT = 120
 SCRAPE_LIMIT = CURR_SCRAPE_LIMIT
 
 # API Keys and Access Tokens 
-API_KEY = "WO7aAxsjO80HRVEeu0vSblnQF"
-API_SECRET = "oQBu4e1r6etMOGUwFaC00uvW4OBhhddiCaZHAmI72GdmFCkvkl"
-ACCESS_TOKEN = "1386928442927501315-R2wXdWAEPbQVUpEuOhqPZthZUOJWpn"
-ACCESS_SECRET = "v94Eb5tWEzMLQfUvnB0mS7BzODzi98PDayveAD9i6cttd"
+API_KEY = os.getenv('API_KEY')
+API_SECRET = os.getenv('API_SECRET')
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
+ACCESS_SECRET = os.getenv('ACCESS_SECRET')
 
 
 # Authenticate to Twitter 
