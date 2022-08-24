@@ -17,3 +17,6 @@ Sample of Twitter Header :
   3. Deploy it on heroku with your API keys and Tokens 🗝️
 
 If You Liked this Project, I will always be grateful for STAR ⭐ provided by you. 🤗
+
+* DEMO
+![Demo Video](https://github.com/adivaste/twitter_dynamic_header/blob/main/Twiiter_dynamic_header.gif)
