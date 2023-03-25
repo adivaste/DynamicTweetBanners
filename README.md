@@ -20,7 +20,6 @@ If You Liked this Project, I will always be grateful for STAR ⭐ provided by yo
 
 👉 REMEMBER to add Access token and keys in ".env" file without quotes.
 
-
 👉 DEMO
 
 ![Demo Video](https://github.com/adivaste/twitter_dynamic_header/blob/main/Twiiter_dynamic_header.gif)
