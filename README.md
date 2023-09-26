@@ -1,4 +1,4 @@
-# Twitter Dynamic Header
+y# Twitter Dynamic Header
 
 It is the Python program which changes your Twitter Header/Banner Image dynamically. In every 60 Seconds your Twitter Header will be changed showing Welcome message and profile pictures of recent five followers. ( You may change updating time )
 
@@ -20,6 +20,7 @@ If You Liked this Project, I will always be grateful for STAR ⭐ provided by yo
 
 👉 REMEMBER to add Access token and keys in ".env" file without quotes.
 
-👉 DEMO
+👉 DEMO :
+
 
 ![Demo Video](https://github.com/adivaste/twitter_dynamic_header/blob/main/Twiiter_dynamic_header.gif)
